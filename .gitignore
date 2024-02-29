@@ -5,6 +5,7 @@ node_modules/
 .vscode/
 
 # Bootstrap 4.3.1
+# Bootstrap 4.4.1
 node_modules/bootstrap/
 
 .DS_Store

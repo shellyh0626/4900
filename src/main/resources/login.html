@@ -6,9 +6,8 @@
     <title>Login</title>
     <!-- Bootstrap core CSS -->
     <link
-      href="asserts/css/bootstrap.min.css"
-      th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}"
       rel="stylesheet"
+      href="/node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
     <link
       href="asserts/css/signin.css"
@@ -20,7 +19,7 @@
   <body class="text-center">
     <form class="form-signin" action="">
       <span></span>
-      <h1>Please sign in</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
       <p style="color: red"></p>
       <label class="sr-only" for="">Username</label>
       <input
@@ -41,8 +40,7 @@
         required=""
       />
       <p></p>
-      <button>Sign in</button>
-
+      <button class="btn btn-lg btn-primary btn-block">Sign in</button>
       <p></p>
     </form>
   </body>
