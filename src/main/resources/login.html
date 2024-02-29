@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,16 +10,37 @@
       th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}"
       rel="stylesheet"
     />
+    <link
+      href="asserts/css/signin.css"
+      th:href="@{/asserts/css/signin.css}"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-    <form action="">
+
+  <body class="text-center">
+    <form class="form-signin" action="">
       <span></span>
       <h1>Please sign in</h1>
+      <p style="color: red"></p>
+      <label class="sr-only" for="">Username</label>
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        required=""
+        autofocus=""
+      />
       <p></p>
-      <label for="">Username</label>
-      <input type="text" placeholder="Username" required="" />
-      <label for="">Password</label>
-      <input type="password" placeholder="Password" required="" />
+      <label class="sr-only" for="">Password</label>
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        required=""
+      />
+      <p></p>
       <button>Sign in</button>
 
       <p></p>
