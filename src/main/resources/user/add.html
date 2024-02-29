@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Backend management</title>
+  </head>
+  <body>
+    <form action="">
+      <input type="hidden" />
+      <input
+        type="hidden"
+        th:if="${user!=null}"
+        th:value="${user.id}"
+      />
+      <div>
+        <label>Username</label>
+        <input
+          type="text"
+          placeholder=""
+          th:value="${user!=null}?${user.username}"
+        />
+      </div>
+      <div>
+        <label>Password</label>
+        <input
+          type="text"
+          placeholder=""
+          th:value="${user!=null}?${user.password}"
+        />
+      </div>
+      <div>
+        <label>Email</label>
+        <input
+          type="email"
+          placeholder=""
+          th:value="${user!=null}?${user.email}"
+        />
+      </div>
+
+      <button
+        type="submit"
+        th:text="${user!=null}?'edit':'add'"
+      >
+        add
+      </button>
+    </form>
+  </body>
+</html>
