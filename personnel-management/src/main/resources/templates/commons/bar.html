@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tittle</title>
+    <link rel="stylesheet" href="/node_modules/bootsrap/dist/css/bootstrap.min.css">
+    <link href="asserts/css/dashboard.css" th:href="@{/asserts/css/dashboard.css}" rel="stylesheet"/>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">[[${session.loginUser}]]</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" href="#" th:href="@{/user/logout}">Exit</a>
+        </li>
+      </ul>
+    </nav>
+
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar" id="sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column side-menu">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <span class="icon-home"></span>
+            Home <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <span class="icon-account"></span>
+            Manage Account
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <span class="icon-employee"></span>
+            Manage Staff
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <span class="icon-contract"></span>
+            Manage Contract
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">
+            <span class="icon-department"></span>
+            Manage Deparment
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>
