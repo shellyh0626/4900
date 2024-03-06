@@ -3,6 +3,7 @@ package com.bcstudents.personnelmanagement;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// The entrance point for our Spring Boot project
 @SpringBootApplication
 public class PersonnelManagementApplication {
 
