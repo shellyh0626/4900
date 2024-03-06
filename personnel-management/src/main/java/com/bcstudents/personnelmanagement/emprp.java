@@ -1,4 +1,4 @@
-package main.java;
+package com.bcstudents.personnelmanagement;
 
 import java.util.Date;
 
