@@ -2,7 +2,7 @@ package com.bcstudents.personnelmanagement;
 
 import java.util.Date;
 
-public class emprp {
+public class Emprp {
     private Integer id;
     private Integer eid;
     private Date rpDate;
@@ -13,10 +13,10 @@ public class emprp {
 
     private Emp emp;
 
-    public emprp() {
+    public Emprp() {
     }
 
-    public emprp(Integer id, Integer eid, Date rpDate, String rpType, String rpReason, Integer rpPoint, String remark, Emp emp) {
+    public Emprp(Integer id, Integer eid, Date rpDate, String rpType, String rpReason, Integer rpPoint, String remark, Emp emp) {
         this.id = id;
         this.eid = eid;
         this.rpDate = rpDate;

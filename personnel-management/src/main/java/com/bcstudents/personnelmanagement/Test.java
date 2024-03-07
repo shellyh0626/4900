@@ -1,5 +1,5 @@
 package com.bcstudents.personnelmanagement;
 
-public class test {
+public class Test {
     
 }
