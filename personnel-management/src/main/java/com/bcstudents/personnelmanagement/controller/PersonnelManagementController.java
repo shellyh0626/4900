@@ -18,8 +18,10 @@ public class PersonnelManagementController {
         if(!StringUtils.isEmpty(username) && "09876".equals(password)){
             return "dassboard";
         }else {
-
+            model.addAttribute("msg", "username or password are incorrect");
+            return "index";
         }
-        return "hello";
     }
 }
+
+
