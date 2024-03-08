@@ -16,7 +16,7 @@ public class PersonnelManagementController {
     public String hello(@RequestParam("username") String username, @RequestParam("password") String password, Model model)
     {
         if(!StringUtils.isEmpty(username) && "09876".equals(password)){
-            return "dassboard";
+            return "redirect:/main.html";
         }else {
             model.addAttribute("msg", "username or password are incorrect");
             return "index";
