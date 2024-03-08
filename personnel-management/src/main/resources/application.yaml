@@ -3,3 +3,7 @@
 #  mvc:
 #    favicon:
 #      enabled: false
+
+spring:
+  thymeleaf:
+    cache: false
