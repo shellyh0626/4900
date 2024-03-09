@@ -49,7 +49,8 @@
         </div>
         <div class="form-group">
             <label>Education</label>
-            <select class="form-control" name="education">
+            <select class="form-control" name="education.id">
+                <option th:each="dept:${department}" th:text="${dept.getDepartmentName}" th:value="${dept.getId()}"></option>
                 <option th:text="DoctoralDegree"></option>
                 <option th:text="Master'sDegree"></option>
                 <option th:text="Bachelor'sDegree"></option>
