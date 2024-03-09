@@ -21,4 +21,13 @@ public class EmpController {
         model.addAttribute("emps", employees);
         return "list1";
     }
+    @GetMapping(“/emp/{id}”)
+    public string toUpdateEmp(@PathVariable(“id”)Integer id, Model model {
+        Employee employee = employeeDao.getEmployeeById(id);
+        model.addAttribute(s:”emp”, employee);
+        Collection<Department> departments = departmentDao.getDepartments();
+        Model.addAttribute(s:"departments", departments);
+        return “emp/update”;
+    }
+
 }
