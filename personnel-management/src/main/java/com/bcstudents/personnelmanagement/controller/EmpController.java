@@ -44,9 +44,9 @@ public String addEmp(Employee employee) {
 @GetMapping("“/emp/{id}”")
     public String toUpdateEmp(@PathVariable("id")Integer id, Model model) {
         Employee employee = employeeDao.getEmployeeById(id);
-        model.addAttribute(s:”emp”, employee);
+        model.addAttribute("”emp”", employee);
         Collection<Department> departments = departmentDao.getDepartments();
-        Model.addAttribute(s:"departments", departments);
+        model.addAttribute("departments", departments);
         return "emp/update";
     }
     @PostMapping("/updateEmp")
