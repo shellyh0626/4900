@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Backend management</title>
+
+    <link rel="stylesheet" 
+    href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>SSN</th>
+                    <th>email</th>
+                    <th>education</th>
+                    <th>age</th>
+                    <th>gender</th>
+                    <th>address</th>
+                    <th>name</th>
+                    <th>employeeID</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>[[${emp.SSN}]]</td>
+                    <td>[[${emp.email}]]</td>
+                    <td>[[${emp.education}]]</td>
+                    <td>[[${emp.age}]]</td>
+                    <td>[[${emp.gender}]]</td>
+                    <td>[[${emp.address}]]</td>
+                    <td>[[${emp.name}]]</td>
+                    <td>[[${emp.employeeID}]]</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" th:href="@{/emp/+$(emp.GetId}">edit</a>
+                        <button>delete</button>
+                    </td>
+                </tr>
+            </tbody> 
+        </table>
+    </div>  
+</body>
+</html>
