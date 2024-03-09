@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Backend management</title>
+
+    <link rel="stylesheet" 
+    href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+    <form th:action="@{/updateEmp}" method="post">
+        <input type="hidden" name="_method" value="put" th:if="${emp!=null}"/>
+        <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.getId()}">
+        <div class="form-group">
+            <label>Name</label>
+            <input th:value="$(emp.getName()}" name="name" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.name}">
+        </div>
+        <div class="form-group">
+            <label>Gender</label><br/>
+            <label>
+                <select class="form-control" name="gender">
+                    <option th:text="Male"></option>
+                    <option th:text="Female"></option>
+                    <option th:text="Other"></option>
+                </select>
+            </label>
+        </div>
+        <div class="form-group">
+			<label>Age</label><br/>
+			<input th:value="$(emp.getAge()}" name="age" id="age" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.age}">
+		</div>
+        <div class="form-group">
+            <label>SSN</label>
+            <input th:value="$(emp.getSSN()}" name="SSN" id="SSN" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.SSN}">
+        </div>
+        <div class="form-group">
+            <label>Email</label>
+            <input th:value="$(emp.getEmail()}" name="email" type="email" class="form-control" placeholder="" th:value="${emp!=null}?${emp.email}">
+        </div>
+        <div class="form-group">
+            <label>Address</label>
+            <input th:value="$(emp.getAddress()}" name="address" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.address}">
+        </div>
+        <div class="form-group">
+            <label>EmployeeID</label>
+            <input th:value="$(emp.getEmployeeID()}" name="employeeID" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.employeeID}">
+        </div>
+        <div class="form-group">
+            <label>Education</label>
+            <select class="form-control" name="education">
+                <option th:text="DoctoralDegree"></option>
+                <option th:text="Master'sDegree"></option>
+                <option th:text="Bachelor'sDegree"></option>
+                <option th:text="AssociateDegree"></option>
+                <option th:text="HighSchool"></option>
+                <option th:text="MiddleSchool"></option>
+                <option th:text="ElementarySchool"></option>
+                <option th:text="Other"></option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" th:text="${emp!=null}?'edit':'add'">Edit</button>
+    </form>
+</body>
+</html>
