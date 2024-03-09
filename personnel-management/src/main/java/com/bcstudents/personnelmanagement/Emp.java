@@ -3,9 +3,9 @@ package com.bcstudents.personnelmanagement;
 public class Emp {
     private Integer SSN;
     private String email;
-    private String education;
+    private Integer education;
     private Integer age;
-    private String gender;
+    private Integer gender;
     private String address;
     private String name;
     private Integer employeeID;
@@ -13,7 +13,7 @@ public class Emp {
     public Emp() {
         
     }
-    public Emp(Integer SSN, String email, String education, Integer age, String gender, String address, String name, Integer employeeID){
+    public Emp(Integer SSN, String email, Integer education, Integer age, Integer gender, String address, String name, Integer employeeID){
         this.SSN = SSN;
         this.email = email;
         this.education = education;
@@ -40,11 +40,11 @@ public class Emp {
         this.email = email;
     }
 
-    public String getEducation() {
+    public Integer getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(Integer education) {
         this.education = education;
     }
 
@@ -56,11 +56,11 @@ public class Emp {
         this.age = age;
     }
 
-    public String getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
