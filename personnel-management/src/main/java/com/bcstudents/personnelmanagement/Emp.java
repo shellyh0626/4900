@@ -11,7 +11,7 @@ public class Emp {
     private Integer employeeID;
 
     public Emp() {
-        
+
     }
     public Emp(Integer SSN, String email, Integer education, Integer age, Integer gender, String address, String name, Integer employeeID){
         this.SSN = SSN;
@@ -90,13 +90,13 @@ public class Emp {
 
     @Override
     public String toString() {
-        return "Emp{" + "SSN = " + SSN + 
-        ", email = " + email + '\'' + 
-        ", education = " + education + 
+        return "Emp{" + "SSN = " + SSN +
+        ", email = " + email + '\'' +
+        ", education = " + education +
         ", age = " + age + '\'' +
         ", gender = " + gender +
         ", address = " + address + '\'' +
-        ", name = " + name + 
+        ", name = " + name +
         ", employeeID = " + employeeID + '}';
     }
 }
