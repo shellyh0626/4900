@@ -1,10 +1,15 @@
 package com.bcstudents.personnelmanagement.controller;
 
+import com.bcstudents.personnelmanagement.dao.DepartmentDao;
 import com.bcstudents.personnelmanagement.dao.EmployeeDao;
+import com.bcstudents.personnelmanagement.pojo.Department;
 import com.bcstudents.personnelmanagement.pojo.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Collection;
@@ -14,6 +19,8 @@ public class EmpController {
 
     @Autowired
     EmployeeDao employeeDao;
+    @Autowired
+    DepartmentDao departmentDao;
 
     @RequestMapping("/emps")
     public String list(Model model){
@@ -21,16 +28,24 @@ public class EmpController {
         model.addAttribute("emps", employees);
         return "list1";
     }
-    @GetMapping(“/emp/{id}”)
-    public string toUpdateEmp(@PathVariable(“id”)Integer id, Model model {
+    @GetMapping("/emp")
+    public String Addpage(Model model){
+        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute("departments",departments);
+        return "emp/add";
+    }
+}
+
+@GetMapping(“/emp/{id}”)
+    public String toUpdateEmp(@PathVariable("id")Integer id, Model model) {
         Employee employee = employeeDao.getEmployeeById(id);
         model.addAttribute(s:”emp”, employee);
         Collection<Department> departments = departmentDao.getDepartments();
         Model.addAttribute(s:"departments", departments);
-        return “emp/update”;
+        return "emp/update";
     }
     @PostMapping("/updateEmp")
-    public string updateEmp(Employee employee){
+    public String updateEmp(Employee employee){
         employeeDao.save(employee);
         return "redirect:/emps";
     }
