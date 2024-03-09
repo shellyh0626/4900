@@ -19,6 +19,6 @@ public class EmpController {
     public String list(Model model){
         Collection<Employee> employees = employeeDao.getAll();
         model.addAttribute("emps", employees);
-        return "list1";
+        return "list";
     }
 }
