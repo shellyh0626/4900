@@ -10,9 +10,9 @@
 
 </head>
 <body>
-    <form th:action="@{/emp}" method="post">
+    <form th:action="@{/updateEmp}" method="post">
         <input type="hidden" name="_method" value="put" th:if="${emp!=null}"/>
-        <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.id}">
+        <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.getId()}">
         <div class="form-group">
             <label>Name</label>
             <input th:value="$(emp.getName()}" name="name" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.name}">

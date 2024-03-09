@@ -29,5 +29,9 @@ public class EmpController {
         Model.addAttribute(s:"departments", departments);
         return “emp/update”;
     }
-
+    @PostMapping("/updateEmp")
+    public string updateEmp(Employee employee){
+        employeeDao.save(employee);
+        return "redirect:/emps";
+    }
 }
