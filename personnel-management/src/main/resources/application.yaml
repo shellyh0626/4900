@@ -1,10 +1,10 @@
-spring.thymeleaf.cache=false
+#spring.thymeleaf.cache=false
 # close default icon
 #spring:
 #  mvc:
 #    favicon:
 #      enabled: false
 
-spring:
-  thymeleaf:
-    cache: false
+#spring:
+#  thymeleaf:
+#    cache: false
