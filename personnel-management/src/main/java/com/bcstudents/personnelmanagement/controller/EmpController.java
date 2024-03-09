@@ -19,28 +19,18 @@ public class EmpController {
 
     @Autowired
     EmployeeDao employeeDao;
-    @Autowired
-    DepartmentDao departmentDao;
 
     @RequestMapping("/emps")
     public String list(Model model){
         Collection<Employee> employees = employeeDao.getAll();
         model.addAttribute("emps", employees);
-        return "list1";
+        return "list";
     }
-    @GetMapping("/emp")
-    public String Addpage(Model model){
-        Collection<Department> departments = departmentDao.getDepartments();
-        model.addAttribute("departments",departments);
-        return "emp/add";
-    }
-}
-
-@GetMapping(“/emp/{id}”)
-    public String toUpdateEmp(@PathVariable("id")Integer id, Model model) {
+    @GetMapping("/emp/{id}")
+    public String toUpdateEmp(@PathVariable("id")Integer id, Model model {
         Employee employee = employeeDao.getEmployeeById(id);
-        model.addAttribute(s:”emp”, employee);
-        Collection<Department> departments = departmentDao.getDepartments();
+        model.addAttribute(s:"emp", employee);
+        Collection<Department> departments = DepartmentDao.getDepartments();
         Model.addAttribute(s:"departments", departments);
         return "emp/update";
     }
