@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backend Manage</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
+
+    <link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/iconfont/iconfont.css}" rel="stylesheet">
+    <style type="text/css">
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<!--extracted topbar-->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--extracted sidebar-->
+        <div th:replace="commons/bar::#sidebar(activeUri='trains')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!--distinguish between modification and addition；-->
+            <form th:action="@{/train}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${train!=null}"/>
+                <input type="hidden" name="id" th:if="${train!=null}" th:value="${train.id}">
+                <div class="form-group">
+                    <label>Employee name</label>
+                    <!--submitted employee id-->
+                    <select class="form-control" name="eid">
+                        <option th:selected="${train!=null}?${emp.id == train.eid}" th:value="${emp.id}" th:each="emp:${emps}" th:text="${emp.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>TrainingDate</label>
+                    <input name="trainDate" type="text" class="form-control" placeholder="1999-02-15" th:value="${train!=null}?${#dates.format(train.trainDate, 'yyyy-MM-dd')}">
+                </div>
+                <div class="form-group">
+                    <label>TrainingInfo</label>
+                    <input name="trainContent" type="text" class="form-control" placeholder="" th:value="${train!=null}?${train.trainContent}">
+                </div>
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input name="remark" type="text" class="form-control" placeholder="" th:value="${train!=null}?${train.remark}">
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="${train!=null}?'Edit':'Add'">Add</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.0/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.1-1/js/bootstrap.js}"></script>
+
+</body>
+
+</html>
