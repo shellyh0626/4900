@@ -1,104 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-	<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Backend management</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    <link rel="stylesheet" 
-    href="/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <title>Backend Management</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
 
+    <link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/iconfont/iconfont.css}" rel="stylesheet">
+    <style type="text/css">
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+    </style>
 </head>
+
 <body>
-<form th:action="@{/emp}" method="post">
-    <input type="hidden" name="_method" value="put" th:if="${emp!=null}"/>
-    <input type="hidden" name="id" th:if="${emp!=null}" th:value="${emp.getId()}">
-    <div class="form-group">
-        <label>Name</label>
-        <input name="name" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.name}">
+<!-- Include the extracted top bar -->
+<!-- Template name: It will use Thymeleaf's prefix and suffix configuration rules for resolution -->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Include sidebar -->
+        <div th:replace="commons/bar::#sidebar(activeUri='emprps')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!-- Need to differentiate between modification and addition -->
+            <form th:action="@{/emprp}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${emprp!=null}"/>
+                <input type="hidden" name="id" th:if="${emprp!=null}" th:value="${emprp.id}">
+                <div class="form-group">
+                    <label>Employee Name</label>
+                    <!-- Submitting the employee id -->
+                    <select class="form-control" name="eid">
+                        <option th:selected="${emprp!=null}?${emp.id == emprp.eid}" th:value="${emp.id}" th:each="emp:${emps}" th:text="${emp.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reward Date</label>
+                    <input name="rpDate" type="text" class="form-control" placeholder="1999-02-15" th:value="${emprp!=null}?${#dates.format(emprp.rpDate, 'yyyy-MM-dd')}">
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Type</label>
+                    <select class="form-control" name="rpType">
+                        <option th:text="Reward"></option>
+                        <option th:text="No Reward"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Reason</label>
+                    <input name="rpReason" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.rpReason}">
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Point</label>
+                    <input name="rpPoint" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.rpPoint}">
+                </div>
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input name="remark" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.remark}">
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="${emprp!=null}?'Modify':'Add'">Add</button>
+            </form>
+        </main>
     </div>
-    <div class="form-group">
-        <label>Gender</label><br/>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" value="1">
-            <label class="form-check-label">male</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="gender" value="0">
-            <label class="form-check-label">female</label>
-        </div>
-        <!--              <select class="form-control" name="gender">
-                            <option th:text="Male"></option>
-                            <option th:text="Female"></option>
-                            <option th:text="Other"></option>
-                        </select> -->
-    </div>
-    <div class="form-group">
-        <label>Age</label><br/>
-        <input name="age" id="age" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.age}">
-    </div>
-    <div class="form-group">
-        <label>SSN</label>
-        <input name="SSN" id="SSN" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.SSN}">
-    </div>
-    <div class="form-group">
-        <label>Email</label>
-        <input name="email" type="email" class="form-control" placeholder="" th:value="${emp!=null}?${emp.email}">
-    </div>
-    <div class="form-group">
-        <label>Address</label>
-        <input name="address" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.address}">
-    </div>
-    <div class="form-group">
-        <label>EmployeeID</label>
-        <input name="employeeID" type="text" class="form-control" placeholder="" th:value="${emp!=null}?${emp.employeeID}">
-    </div>
-    <div class="form-group">
-        <label>Education</label>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="0">
-            <label class="form-check-label">DoctoralDegree</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="1">
-            <label class="form-check-label">Master'sDegree</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="2">
-            <label class="form-check-label">Bachelor'sDegree</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="3">
-            <label class="form-check-label">AssociateDegree</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="4">
-            <label class="form-check-label">HighSchool</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="5">
-            <label class="form-check-label">MiddleSchool</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="6">
-            <label class="form-check-label">ElementarySchool</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="Education" value="7">
-            <label class="form-check-label">Other</label>
-        </div>
-        <!--            <select class="form-control" name="education">
-                        <option th:text="DoctoralDegree"></option>
-                        <option th:text="Master'sDegree"></option>
-                        <option th:text="Bachelor'sDegree"></option>
-                        <option th:text="AssociateDegree"></option>
-                        <option th:text="HighSchool"></option>
-                        <option th:text="MiddleSchool"></option>
-                        <option th:text="ElementarySchool"></option>
-                        <option th:text="Other"></option>
-                    </select> -->
-    </div>
-    <button type="submit" class="btn btn-primary" th:text="${emp!=null}?'edit':'add'">Edit</button>
-</form>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.0/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.1-1/js/bootstrap.js}"></script>
+
 </body>
-</html>
+
