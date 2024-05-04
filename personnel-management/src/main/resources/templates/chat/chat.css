@@ -1,0 +1,55 @@
+/* Basic reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Chat container */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+}
+
+/* Chat container */
+#chat-output {
+    width: 500px;
+    height: 1000px;
+    overflow-y: scroll;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative; /* Add relative positioning */
+}
+
+#message-input-container {
+    position: absolute; /* Add absolute positioning */
+    bottom: 10px; /* Distance from the bottom */
+    right: 10px; /* Distance from the right */
+    display: flex;
+}
+
+#message-input {
+    flex: 1;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-left: 10px; /* Add margin to separate input and button */
+    border-radius: 3px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

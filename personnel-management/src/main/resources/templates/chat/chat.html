@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="chat.css">
+    <title>WebSocket Chat</title>
+</head>
+<body>
+<div id="chat-output">
+    <!-- Chat messages displayed here -->
+    <div id="message-input-container">
+        <input type="text" id="message-input" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+<script>
+    const chatOutput = document.getElementById('chat-output');
+    const messageInput = document.getElementById('message-input');
+    let websocket;
+
+    function connectWebSocket() {
+        websocket = new WebSocket("ws://localhost:8080/imserver/{username}");
+
+        websocket.onopen = function (event) {
+            console.log("WebSocket connection established.");
+        };
+
+        websocket.onmessage = function (event) {
+            const message = JSON.parse(event.data);
+            displayMessage(message.from + ': ' + message.text);
+        };
+
+        websocket.onclose = function (event) {
+            console.log("WebSocket connection closed.");
+        };
+
+        websocket.onerror = function (event) {
+            console.error("WebSocket error occurred:", event);
+        };
+    }
+
+    function sendMessage() {
+        const message = messageInput.value;
+        websocket.send(JSON.stringify({ to: 'admin', text: message }));
+        displayMessage('You: ' + message);
+        messageInput.value = '';
+    }
+    // Event listener for Enter or Return key
+    messageInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            sendMessage();
+        }
+    });
+    function displayMessage(message) {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = message;
+        chatOutput.appendChild(messageElement);
+    }
+
+    connectWebSocket();
+</script>
+</body>
+</html>
