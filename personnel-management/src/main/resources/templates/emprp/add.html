@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backend Management</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
+
+    <link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/iconfont/iconfont.css}" rel="stylesheet">
+    <style type="text/css">
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<!-- Include the extracted top bar -->
+<!-- Template name: It will use Thymeleaf's prefix and suffix configuration rules for resolution -->
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Include sidebar -->
+        <div th:replace="commons/bar::#sidebar(activeUri='emprps')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!-- Need to differentiate between modification and addition -->
+            <form th:action="@{/emprp}" method="post">
+                <input type="hidden" name="_method" value="put" th:if="${emprp!=null}"/>
+                <input type="hidden" name="id" th:if="${emprp!=null}" th:value="${emprp.id}">
+                <div class="form-group">
+                    <label>Employee Name</label>
+                    <!-- Submitting the employee id -->
+                    <select class="form-control" name="eid">
+                        <option th:selected="${emprp!=null}?${emp.id == emprp.eid}" th:value="${emp.id}" th:each="emp:${emps}" th:text="${emp.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Reward Date</label>
+                    <input name="rpDate" type="text" class="form-control" placeholder="1999-02-15" th:value="${emprp!=null}?${#dates.format(emprp.rpDate, 'yyyy-MM-dd')}">
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Type</label>
+                    <select class="form-control" name="rpType">
+                        <option th:text="Reward"></option>
+                        <option th:text="NoReward"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Reason</label>
+                    <input name="rpReason" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.rpReason}">
+                </div>
+                <div class="form-group">
+                    <label>Rewarding Point</label>
+                    <input name="rpPoint" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.rpPoint}">
+                </div>
+                <div class="form-group">
+                    <label>Remark</label>
+                    <input name="remark" type="text" class="form-control" placeholder="" th:value="${emprp!=null}?${emprp.remark}">
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="${emprp!=null}?'Modify':'Add'">Add</button>
+            </form>
+        </main>
+    </div>
+</div>
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.0/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.1-1/js/bootstrap.js}"></script>
+
+</body>
