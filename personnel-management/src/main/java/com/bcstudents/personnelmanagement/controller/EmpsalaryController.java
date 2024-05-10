@@ -1,12 +1,12 @@
-package com.xtu.hrms.controller;
+package com.bcstudents.personnelmanagement.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.xtu.hrms.bean.*;
-import com.xtu.hrms.config.PaginationConstant;
-import com.xtu.hrms.service.IEmpService;
-import com.xtu.hrms.service.IEmpsalaryService;
-import com.xtu.hrms.service.ISalaryService;
+import com.bcstudents.personnelmanagement.bean.*;
+import com.bcstudents.personnelmanagement.config.PaginationConstant;
+import com.bcstudents.personnelmanagement.service.IEmpService;
+import com.bcstudents.personnelmanagement.service.IEmpsalaryService;
+import com.bcstudents.personnelmanagement.service.ISalaryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
