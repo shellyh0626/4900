@@ -1,11 +1,13 @@
 package com.bcstudents.personnelmanagement;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+
+@MapperScan("com.bcstudents.personnelmanagement.mapper")
+@SpringBootApplication
 
 // The entrance point for our Spring Boot project
-@SpringBootApplication(exclude= DataSourceAutoConfiguration.class)
 public class PersonnelManagementApplication {
 
 	public static void main(String[] args) {
