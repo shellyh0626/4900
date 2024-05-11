@@ -4,7 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.bcstudents.personnelmanagement.bean.*;
 import com.bcstudents.personnelmanagement.PaginationConstant;
-import com.bcstudents.personnelmanagement.IContractService;
+import com.bcstudents.personnelmanagement.service.IContractService;
 import com.bcstudents.personnelmanagement.service.IEmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
