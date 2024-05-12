@@ -1,6 +1,6 @@
 package com.bcstudents.personnelmanagement.mapper;
 
-import com.bcstudents.personnelmanagement.Contract;
+import com.bcstudents.personnelmanagement.bean.Contract;
 
 import java.util.List;
 
