@@ -37,6 +37,17 @@ spring:
   messages:
     basename: i18n.login
 
+  mail:
+    username: 4900teamwork88@gmail.com
+    password: srnq fcjl mkgh oyqp
+    host: smtp.gmail.com
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
 mybatis:
 
