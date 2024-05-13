@@ -1,6 +1,6 @@
-package com.bcstudents.personnelmanagement.config;
+package com.xtu.hrms.config;
 
-import com.bcstudents.personnelmanagement.component.LoginHandlerInterceptor;
+import com.xtu.hrms.component.LoginHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -20,6 +20,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new LoginHandlerInterceptor()).addPathPatterns("/**").
-                excludePathPatterns("/index.html","/","/user/login","/asserts/**","/iconfont/**","/webjars/**");
+                excludePathPatterns("/index.html","/","/user/login","/asserts/**","/iconfont/**","/webjars/**", "/file/**");
     }
 }

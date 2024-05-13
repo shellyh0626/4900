@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Backend Management</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.css}" rel="stylesheet">
+
+    <link th:href="@{/asserts/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/iconfont/iconfont.css}" rel="stylesheet">
+    <style type="text/css">
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+<div th:replace="commons/bar::topbar"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- Include the extracted top bar -->
+        <div th:replace="commons/bar::#sidebar(activeUri='fileConverters')"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <!-- Need to differentiate between modification and addition -->
+            <form th:action="@{/fileConverter}" method="post">
+
+                <input type="hidden" name="_method" value="put" th:if="${converter!=null}"/>
+                <input type="hidden" name="id" th:if="${converter!=null}" th:value="${converter.id}">
+                <input type="hidden" name="fileName" id="fileName" th:value="${converter!=null?converter.fileName:''}">
+                <input type="hidden" name="filePath" id="filePath" th:value="${converter!=null?converter.filePath:''}">
+
+                <!--<div class="form-group">
+                    <label>File name</label>
+                    <input name="fileName" type="text" class="form-control" placeholder="" th:value="${converter!=null}?${converter.fileName}">
+                </div>-->
+                <div class="form-group">
+                    <a href="javascript:void(0)" style="color:deepskyblue;text-decoration: underline" onclick="$('#file').click()">Click to upload</a>
+                    <div id="nameDiv" th:text="${converter!=null?converter.fileName:''}"></div>
+                    <input type="file" style="display: none" id="file" onchange="onUpload(this)">
+                </div>
+
+                <button type="submit" class="btn btn-primary" th:text="${converter!=null}?'Modify':'Add'">Add</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/webjars/jquery/3.5.0/jquery.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/popper.js/1.14.3/dist/popper.js}"></script>
+<script type="text/javascript" th:src="@{/webjars/bootstrap/4.1.1-1/js/bootstrap.js}"></script>
+<script type="text/javascript">
+    $(function () {
+
+    })
+
+    var ctx = [[@{/}]];
+        function onUpload(obj) {
+            //console.info(obj instanceof FileList)
+            //console.info(obj instanceof HTMLInputElement)
+            var file;
+            // To address compatibility issues with IE
+            if (obj instanceof HTMLInputElement) {
+                file = obj.files[0];
+            } else if (obj instanceof FileList) {
+                file = obj[0]
+            }
+            if (file.size > 50 * 1024 * 1024) {
+                alert("The file cannot exceed 50MB");
+                return
+            }
+            var formData = new FormData();
+            // Add file to FormData
+            formData.append("file", file); // Add text
+            $.ajax({
+                url: ctx+"/file/upload",
+                data: formData,
+                type: "post",
+                dataType: "json",
+                cache: false,
+                processData: false,
+                async: false,
+                contentType: false,
+                success: function (data) {
+                    if(data.code==200){
+                        $("#fileName").val(data.name)
+                        $("#filePath").val(data.path)
+                        $("#nameDiv").html(data.name)
+                    }else {
+                        //layer.alert(data.msg,{icon:2});
+                        alert(data.msg)
+                    }
+                }
+            })
+
+        }
+
+
+
+</script>
+</body>
+
+</html>
