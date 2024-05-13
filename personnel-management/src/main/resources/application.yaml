@@ -48,3 +48,6 @@ pagehelper:
   resonable: true
   support-methods-arguments: true
   params:
+
+upload:
+  path: /Users/shellyhuang/Desktop/hrms-master-4

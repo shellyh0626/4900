@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xtu.hrms.mapper.FileConverterMapper">
+
+    <select id="getById" resultType="com.xtu.hrms.bean.FileConverter">
+        select * from file_converter where id=#{id}
+    </select>
+
+    <select id="getAll" resultType="com.xtu.hrms.bean.FileConverter">
+        select * from file_converter
+    </select>
+
+    <delete id="deleteById">
+        delete from file_converter where id=#{id}
+    </delete>
+
+    <insert id="add" parameterType="com.xtu.hrms.bean.FileConverter">
+        insert into file_converter (fileName, filePath, createTime)
+        values (#{fileName}, #{filePath}, now())
+    </insert>
+
+    <update id="update" parameterType="com.xtu.hrms.bean.FileConverter">
+        update file_converter
+        set fileName = #{fileName},
+        filePath = #{filePath}
+        where id = #{id}
+    </update>
+</mapper>
